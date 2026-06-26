@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Incidents - DisasterOS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Disaster<span>OS</span></div>
+
+<ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="incidents.html">Incidents</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="copilot.html">AI Copilot</a></li>
+</ul>
+</nav>
+
+<section class="report">
+
+<div class="card">
+
+<h2 class="section-title">Active Incidents</h2>
+
+<h2 class="section-title">
+
+Incident History
+
+</h2>
+
+<div class="stats">
+
+<div class="card">
+
+<h2 id="totalIncidents">
+
+0
+
+</h2>
+
+<p>Total Incidents</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="activeIncidents">
+
+0
+
+</h2>
+
+<p>Active</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="resolvedIncidents">
+
+0
+
+</h2>
+
+<p>Resolved</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="highPriority">
+
+0
+
+</h2>
+
+<p>High Priority</p>
+
+</div>
+
+</div>
+
+<br>
+
+<input
+
+type="text"
+
+id="search"
+
+placeholder="Search Incident...">
+
+<br><br>
+
+<table id="incidentTable">
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Type</th>
+
+<th>Location</th>
+
+<th>Severity</th>
+
+<th>Status</th>
+
+<th>Time</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+</tbody>
+
+</table>
+
+<br>
+
+<button
+
+class="btn primary"
+
+id="generateReport">
+
+Generate Report
+
+</button>
+
+<div class="incident medium">
+<span>Fire #102 - Industrial Zone</span>
+<span>MEDIUM</span>
+</div>
+
+<div class="incident low">
+<span>Landslide #103</span>
+<span>LOW</span>
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>

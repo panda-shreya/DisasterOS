@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Copilot - DisasterOS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+<div class="logo">Disaster<span>OS</span></div>
+
+<ul>
+<li><a href="index.html">Dashboard</a></li>
+<li><a href="incidents.html">Incidents</a></li>
+<li><a href="resources.html">Resources</a></li>
+<li><a href="copilot.html">AI Copilot</a></li>
+</ul>
+</nav>
+
+<section class="report">
+
+<div class="card">
+
+<h2 class="section-title">AI Disaster Copilot</h2>
+
+<input
+type="text"
+id="question"
+placeholder="Ask AI about any disaster situation...">
+
+<br><br>
+
+<button
+class="btn primary"
+onclick="askAI()">
+Analyze
+</button>
+
+<div id="aiResult"></div>
+
+</div>
+
+</section>
+
+<script>
+
+function askAI(){
+
+const q =
+document.getElementById("question").value;
+
+const result =
+document.getElementById("aiResult");
+
+result.style.display="block";
+
+result.innerHTML=`
+
+<h3>AI RESPONSE</h3>
+
+<br>
+
+Incident Analysis Completed
+
+<br><br>
+
+Recommended Actions:
+
+<ul style="padding-left:20px">
+
+<li>Deploy nearest rescue team</li>
+
+<li>Alert local authorities</li>
+
+<li>Establish relief camp</li>
+
+<li>Monitor weather updates</li>
+
+</ul>
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>

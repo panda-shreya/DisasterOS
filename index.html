@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+DisasterOS - Emergency Intelligence Platform
+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+<div class="logo">
+
+Disaster<span>OS</span>
+
+</div>
+
+<ul>
+
+<li>
+
+<a href="index.html">
+
+Dashboard
+
+</a>
+
+</li>
+
+<li>
+
+<a href="incidents.html">
+
+Incidents
+
+</a>
+
+</li>
+
+<li>
+
+<a href="resources.html">
+
+Resources
+
+</a>
+
+</li>
+
+<li>
+
+<a href="copilot.html">
+
+AI Copilot
+
+</a>
+
+</li>
+
+</ul>
+
+</nav>
+
+<!-- =========================
+     LIVE STATUS BAR
+========================= -->
+
+<section class="status-bar">
+
+<div>
+
+🟢 System :
+
+<span id="systemStatus">
+
+ONLINE
+
+</span>
+
+</div>
+
+<div>
+
+🕒
+
+<span id="liveClock">
+
+00:00:00
+
+</span>
+
+</div>
+
+<div>
+
+🚨 Active Incidents :
+
+<span id="incidentCount">
+
+2
+
+</span>
+
+</div>
+
+</section>
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+<div class="radar"></div>
+
+<h1>
+
+Emergency Intelligence
+
+<br>
+
+for Modern Disaster Response
+
+</h1>
+
+<p>
+
+A unified operating system that enables
+
+real-time incident reporting,
+
+AI-powered risk assessment,
+
+resource coordination,
+
+and emergency response
+
+during disasters and crises.
+
+</p>
+
+<div class="buttons">
+
+<button
+
+class="btn primary"
+
+onclick="document.querySelector('.report').scrollIntoView({behavior:'smooth'})">
+
+Report Emergency
+
+</button>
+
+<button
+
+class="btn secondary"
+
+onclick="document.querySelector('.dashboard').scrollIntoView({behavior:'smooth'})">
+
+Open Command Center
+
+</button>
+
+</div>
+
+</section>
+
+<!-- =========================
+     LIVE STATISTICS
+========================= -->
+
+<section class="stats">
+
+<div class="card">
+
+<h2 id="totalIncidents">
+
+2
+
+</h2>
+
+<p>
+
+Total Incidents
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="resolved">
+
+0
+
+</h2>
+
+<p>
+
+Resolved
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="teamsDeployed">
+
+0
+
+</h2>
+
+<p>
+
+Teams Deployed
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="citizensSafe">
+
+0
+
+</h2>
+
+<p>
+
+Citizens Assisted
+
+</p>
+
+</div>
+
+</section>
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section class="dashboard">
+
+<!-- =========================
+     LIVE MAP
+========================= -->
+
+<div class="card">
+
+<h2 class="section-title">
+
+🗺 Live Operational Map
+
+</h2>
+
+<div id="map"></div>
+
+<br>
+
+<div class="map-buttons">
+
+<button
+class="btn secondary"
+id="locateBtn">
+
+📍 My Location
+
+</button>
+
+<button
+class="btn secondary"
+id="refreshBtn">
+
+🔄 Refresh Map
+
+</button>
+
+</div>
+
+</div>
+
+<!-- =========================
+     AI RESPONSE PANEL
+========================= -->
+
+<div class="card">
+
+<h2 class="section-title">
+
+🤖 AI Response Assistant
+
+</h2>
+
+<div id="aiAssistant">
+
+<p>
+
+<strong>Priority Incident :</strong>
+
+<span id="priorityIncident">
+
+Flood #101
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Risk Level :</strong>
+
+<span id="riskLevel">
+
+Critical
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Estimated Impact :</strong>
+
+<span id="estimatedImpact">
+
+120+
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Recommended Deployment :</strong>
+
+<span id="deployment">
+
+Alpha Rescue Team
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>AI Confidence :</strong>
+
+<span id="confidence">
+
+94%
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+<strong>Last Updated :</strong>
+
+<span id="lastUpdated">
+
+Just Now
+
+</span>
+
+</p>
+
+</div>
+
+</div>
+
+<!-- =========================
+     INCIDENT FEED
+========================= -->
+
+<div class="card">
+
+<h2 class="section-title">
+
+🚨 Live Incident Feed
+
+</h2>
+
+<div id="incidentFeed">
+
+<div class="incident high">
+
+<span>
+
+Flood #101
+
+</span>
+
+<span>
+
+HIGH
+
+</span>
+
+</div>
+
+<div class="incident medium">
+
+<span>
+
+Fire #102
+
+</span>
+
+<span>
+
+MEDIUM
+
+</span>
+
+</div>
+
+<div class="incident low">
+
+<span>
+
+Team Alpha Tracking
+
+</span>
+
+<span>
+
+ACTIVE
+
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- =========================
+     RESOURCES
+========================= -->
+
+<div class="card">
+
+<h2 class="section-title">
+
+🚑 Operational Resources
+
+</h2>
+
+<div id="resourcePanel">
+
+<p>
+
+🚑 Emergency Vehicles :
+
+<strong id="ambulances">
+
+15
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+👨‍🚒 Rescue Teams :
+
+<strong id="teams">
+
+12
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+💊 Medical Kits :
+
+<strong id="medical">
+
+120
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+🍱 Food Kits :
+
+<strong id="food">
+
+230
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+🛶 Rescue Boats :
+
+<strong id="boats">
+
+8
+
+</strong>
+
+</p>
+
+<br>
+
+<p>
+
+🚁 Helicopters :
+
+<strong id="helicopters">
+
+3
+
+</strong>
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     REPORT INCIDENT
+========================= -->
+
+<section class="report">
+
+<div class="card">
+
+<h2 class="section-title">
+
+🚨 Report New Incident
+
+</h2>
+
+<form id="incidentForm">
+
+<label>
+
+Incident Type
+
+</label>
+
+<select id="type">
+
+<option>Flood</option>
+
+<option>Fire</option>
+
+<option>Landslide</option>
+
+<option>Cyclone</option>
+
+<option>Earthquake</option>
+
+<option>Building Collapse</option>
+
+<option>Road Accident</option>
+
+</select>
+
+<br>
+
+<label>
+
+Incident Location
+
+</label>
+
+<input
+
+type="text"
+
+id="location"
+
+placeholder="Enter incident location">
+
+<br>
+
+<label>
+
+Estimated People Affected
+
+</label>
+
+<input
+
+type="number"
+
+id="people"
+
+placeholder="Approximate number of people">
+
+<br>
+
+<label>
+
+Incident Description
+
+</label>
+
+<textarea
+
+id="description"
+
+placeholder="Provide details about the incident...">
+
+</textarea>
+
+<br>
+
+<label>
+
+Upload Image (Optional)
+
+</label>
+
+<input
+
+type="file"
+
+accept="image/*">
+
+<br>
+
+<button
+
+class="btn primary"
+
+type="submit">
+
+Analyze & Submit
+
+</button>
+
+<button
+
+class="btn secondary"
+
+type="reset">
+
+Clear Form
+
+</button>
+
+</form>
+
+<br>
+
+<div id="result">
+
+<h3>
+
+AI INCIDENT ASSESSMENT
+
+</h3>
+
+<br>
+
+<p>
+
+Waiting for incident report...
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     LIVE NOTIFICATIONS
+========================= -->
+
+<section class="notifications">
+
+<div class="card">
+
+<h2 class="section-title">
+
+🔔 Recent Alerts
+
+</h2>
+
+<div id="notifications">
+
+<p>
+
+No new alerts.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     QUICK ACTIONS
+========================= -->
+
+<section class="quick-actions">
+
+<div class="card">
+
+<h2 class="section-title">
+
+⚡ Quick Actions
+
+</h2>
+
+<div class="buttons">
+
+<button
+
+class="btn secondary"
+
+id="deployBtn">
+
+🚑 Deploy Team
+
+</button>
+
+<button
+
+class="btn secondary"
+
+id="evacuateBtn">
+
+🏠 Start Evacuation
+
+</button>
+
+<button
+
+class="btn secondary"
+
+id="medicalBtn">
+
+🏥 Medical Support
+
+</button>
+
+<button
+
+class="btn secondary"
+
+id="refreshDashboard">
+
+🔄 Refresh Dashboard
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+<div class="footer-content">
+
+<h2>
+
+Disaster<span style="color:#ff4d4d;">OS</span>
+
+</h2>
+
+<br>
+
+<p>
+
+AI-Driven Emergency Operations Platform
+
+</p>
+
+<br>
+
+<p>
+
+System Status :
+
+<span id="footerStatus">
+
+🟢 Operational
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+Last Sync :
+
+<span id="lastSync">
+
+Just Now
+
+</span>
+
+</p>
+
+<br>
+
+<p>
+
+Version 1.0 • Hackathon Prototype
+
+</p>
+
+</div>
+
+</footer>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
